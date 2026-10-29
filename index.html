@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<title>⚰️ 阴间点名仪式</title>
+<style>
+*{box-sizing:border-box}
+@keyframes bp{0%,100%{opacity:.22;transform:scale(1)}50%{opacity:.48;transform:scale(1.06)}}
+@keyframes fs{0%{transform:translateY(0) rotate(0);opacity:.05}50%{transform:translateY(-45px) rotate(14deg);opacity:.12}100%{transform:translateY(0) rotate(0);opacity:.05}}
+@keyframes shk{0%,100%{transform:translate(0,0) rotate(0)}10%{transform:translate(-9px,5px) rotate(-1.1deg)}20%{transform:translate(9px,-5px) rotate(1.1deg)}30%{transform:translate(-7px,-5px) rotate(-.9deg)}40%{transform:translate(7px,5px) rotate(.9deg)}50%{transform:translate(-5px,4px) rotate(-.6deg)}60%{transform:translate(5px,-4px) rotate(.6deg)}70%{transform:translate(-3px,3px) rotate(0)}80%{transform:translate(3px,-3px) rotate(0)}90%{transform:translate(-1px,1px) rotate(0)}}
+@keyframes rf{0%{opacity:.85}100%{opacity:0}}
+@keyframes slam{0%{transform:scale(2.8) rotate(-6deg);opacity:0;filter:blur(14px)}55%{transform:scale(.9) rotate(2deg);opacity:1;filter:blur(0)}75%{transform:scale(1.07) rotate(-1deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes flk{0%,100%{opacity:1}41%{opacity:1}42%{opacity:.5}43%{opacity:1}45%{opacity:.72}46%{opacity:1}70%{opacity:1}71%{opacity:.78}72%{opacity:1}}
+@keyframes scan{0%{transform:translateY(-130%)}100%{transform:translateY(130%)}}
+body{margin:0;min-height:100vh;background:#050002;background-image:radial-gradient(ellipse at 50% 0%,rgba(120,0,10,.55) 0%,transparent 55%),radial-gradient(ellipse at 50% 100%,rgba(60,0,5,.7) 0%,transparent 60%),radial-gradient(circle at 50% 50%,#140005 0%,#000 75%);font-family:'Segoe UI','Microsoft YaHei',system-ui,sans-serif;display:flex;justify-content:center;align-items:center;padding:16px;overflow-x:hidden;position:relative}
+.sl{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.sl span{position:absolute;filter:grayscale(45%) blur(.4px);animation:fs linear infinite;user-select:none}
+.halo{position:fixed;inset:-20%;pointer-events:none;z-index:0;background:radial-gradient(circle at 50% 45%,rgba(255,0,40,.17) 0%,transparent 55%);animation:bp 5.5s ease-in-out infinite}
+#fl{position:fixed;inset:0;background:#ff0028;opacity:0;pointer-events:none;z-index:999;mix-blend-mode:screen}
+#fl.on{animation:rf .55s ease-out forwards}
+.card{position:relative;z-index:1;max-width:800px;width:100%;background:linear-gradient(160deg,rgba(28,4,8,.93) 0%,rgba(8,0,2,.97) 100%);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:36px;padding:28px 22px;box-shadow:0 0 0 1px rgba(255,30,60,.25),0 0 40px rgba(180,0,20,.35),0 30px 60px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,60,80,.1);border:1px solid rgba(120,0,20,.5)}
+.card.ritual{animation:shk .6s cubic-bezier(.36,.07,.19,.97)}
+h1{margin:0 0 10px 0;font-weight:800;font-size:2.05rem;color:#ff2b45;display:flex;align-items:center;gap:10px;justify-content:center;letter-spacing:3px;text-shadow:0 0 8px rgba(255,20,50,.9),0 0 26px rgba(255,0,30,.6),0 0 50px rgba(200,0,20,.4);animation:flk 6s infinite}
+.sub{text-align:center;color:#a86a72;margin-bottom:22px;font-weight:400;font-size:.9rem;border-bottom:1px dashed rgba(180,20,40,.45);padding-bottom:12px;letter-spacing:1px}
+.da{position:relative;background:radial-gradient(circle at 50% 40%,#1a0006 0%,#000 85%);border-radius:26px;padding:30px 20px 20px;margin-bottom:22px;box-shadow:inset 0 0 60px rgba(255,0,30,.18),inset 0 0 4px rgba(255,0,30,.6),0 10px 30px rgba(0,0,0,.8);border:1px solid rgba(255,20,50,.35);overflow:hidden;min-height:185px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.da::before{content:'';position:absolute;left:0;right:0;height:40%;background:linear-gradient(to bottom,transparent,rgba(255,0,40,.07),transparent);animation:scan 4.5s linear infinite;pointer-events:none}
+#nm{min-height:90px;display:flex;align-items:center;justify-content:center;font-size:3.7rem;font-weight:900;color:#ffe8ea;text-shadow:0 0 10px rgba(255,20,50,.9),0 0 30px rgba(255,0,40,.65),0 0 60px rgba(200,0,20,.5),0 4px 0 rgba(90,0,10,.8);letter-spacing:5px;word-break:break-word;text-align:center;line-height:1.25;position:relative;z-index:2}
+#nm.slam{animation:slam .65s cubic-bezier(.2,1.4,.4,1) both}
+#nm.rolling{color:#6a3a44;text-shadow:0 0 8px rgba(255,0,40,.35);filter:blur(.6px);letter-spacing:3px}
+.ph{opacity:.55;font-size:1.85rem;font-weight:400;color:#8f4b55;letter-spacing:2px;text-shadow:0 0 12px rgba(180,0,30,.5)}
+#cs{margin-top:10px;font-size:.85rem;color:#b04a58;letter-spacing:3px;min-height:1.2em;opacity:0;transition:opacity .5s;position:relative;z-index:2;text-align:center}
+#cs.show{opacity:1}
+.ab{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:24px}
+.btn{background:linear-gradient(180deg,#2a1016 0%,#170408 100%);border:1px solid rgba(200,30,60,.35);border-radius:16px;padding:13px 20px;font-size:.98rem;font-weight:700;color:#d99aa4;box-shadow:0 5px 0 rgba(60,0,12,.9),0 0 14px rgba(180,0,30,.22);cursor:pointer;transition:all .1s;flex:0 1 auto;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:108px;letter-spacing:1px;font-family:inherit}
+.btn:hover:not(:disabled){color:#ffb9c2;box-shadow:0 5px 0 rgba(90,0,18,.9),0 0 24px rgba(255,0,40,.38);transform:translateY(-1px)}
+.btn:active:not(:disabled){transform:translateY(4px);box-shadow:0 1px 0 rgba(50,0,10,.9),0 0 10px rgba(255,0,40,.2)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.prim{background:linear-gradient(180deg,#c11222 0%,#6b0310 100%);color:#fff0f2;border:1px solid rgba(255,80,100,.6);box-shadow:0 6px 0 #3d0009,0 0 30px rgba(255,0,40,.5),inset 0 1px 0 rgba(255,140,150,.4);font-size:1.22rem;padding:17px 28px;flex:2 1 175px;letter-spacing:3px;border-radius:18px;text-shadow:0 0 10px rgba(255,200,210,.9)}
+.prim:hover:not(:disabled){box-shadow:0 6px 0 #3d0009,0 0 50px rgba(255,0,40,.8),inset 0 1px 0 rgba(255,160,170,.5);color:#fff}
+.warn{background:linear-gradient(180deg,#2f1a0a 0%,#1a0b02 100%);color:#c9946a;border-color:rgba(190,110,40,.35)}
+.warn:hover:not(:disabled){color:#e8b98c;box-shadow:0 5px 0 rgba(80,40,8,.9),0 0 20px rgba(220,130,40,.3)}
+.lh{display:flex;justify-content:space-between;align-items:baseline;margin:8px 6px 8px 6px}
+.lh span{font-weight:700;color:#c47b86;font-size:1rem;letter-spacing:1px}
+.badge{background:linear-gradient(180deg,#3a0a14 0%,#1e0008 100%);color:#e88a98;padding:4px 14px;border-radius:30px;font-size:.8rem;border:1px solid rgba(200,40,70,.4);letter-spacing:1px;box-shadow:0 0 12px rgba(200,0,30,.2)}
+.lc{background:rgba(0,0,0,.55);border-radius:20px;padding:14px 12px;box-shadow:inset 0 2px 14px rgba(0,0,0,.9),inset 0 0 30px rgba(120,0,20,.12);max-height:200px;overflow-y:auto;border:1px solid rgba(120,10,30,.3)}
+.lc::-webkit-scrollbar{width:6px}
+.lc::-webkit-scrollbar-track{background:rgba(40,0,10,.5);border-radius:3px}
+.lc::-webkit-scrollbar-thumb{background:rgba(160,20,40,.6);border-radius:3px}
+.st{display:flex;flex-wrap:wrap;gap:8px 8px}
+.tag{background:linear-gradient(160deg,#1c0910 0%,#100306 100%);border-radius:10px;padding:7px 11px 7px 10px;font-size:.93rem;box-shadow:0 2px 6px rgba(0,0,0,.7),inset 0 0 14px rgba(150,0,30,.1);display:flex;align-items:center;gap:6px;border:1px solid rgba(140,20,40,.35);color:#d3a5ad;font-weight:500;position:relative;transition:all .15s;letter-spacing:.5px}
+.tag::before{content:'▏';color:rgba(220,40,70,.55);font-size:.85em;margin-right:-3px}
+.tag:hover{border-color:rgba(255,50,80,.6);box-shadow:0 2px 10px rgba(0,0,0,.8),inset 0 0 22px rgba(200,0,40,.2),0 0 16px rgba(200,0,30,.25);color:#f0b8c0}
+.rm{background:none;border:none;font-size:1.05rem;line-height:1;cursor:pointer;color:#7a3340;padding:0 2px;font-weight:bold;transition:.12s;font-family:inherit}
+.rm:hover{color:#ff3048;transform:scale(1.35) rotate(90deg);text-shadow:0 0 10px rgba(255,0,40,.9)}
+.as{display:flex;margin-top:16px;gap:8px}
+.as input{flex:1;padding:13px 16px;border-radius:14px;background:rgba(0,0,0,.6);font-size:.96rem;border:1px solid rgba(140,20,40,.4);outline:none;color:#d8aab2;letter-spacing:1px;transition:all .2s;font-family:inherit}
+.as input::placeholder{color:#6b3540}
+.as input:focus{border-color:rgba(255,40,70,.7);box-shadow:0 0 0 3px rgba(255,0,40,.12),0 0 20px rgba(200,0,30,.25);color:#ffc4cc}
+.hb{margin-top:16px;color:#a06a72;font-size:.86rem;padding:10px 14px;background:rgba(0,0,0,.45);border-radius:14px;display:flex;align-items:center;flex-wrap:wrap;gap:5px 12px;border:1px solid rgba(110,10,28,.3);box-shadow:inset 0 0 20px rgba(100,0,20,.1)}
+.hl{font-weight:700;color:#c27b86;letter-spacing:1px}
+#hl2{color:#8f5560;letter-spacing:1px}
+.ch{margin-left:auto;background:transparent;border:1px dashed rgba(180,40,65,.5);border-radius:30px;padding:4px 12px;cursor:pointer;font-size:.78rem;color:#a85a68;transition:all .15s;font-family:inherit}
+.ch:hover{color:#ff6b7e;border-color:rgba(255,60,90,.8);box-shadow:0 0 14px rgba(255,0,40,.3)}
+.fn{margin-top:14px;font-size:.73rem;text-align:center;color:#5e2a34;letter-spacing:1px;line-height:1.6}
+@media(max-width:520px){
+h1{font-size:1.55rem;letter-spacing:2px}
+#nm{font-size:2.8rem;letter-spacing:3px}
+.prim{font-size:1.08rem;padding:15px 18px;letter-spacing:2px}
+.card{padding:22px 15px;border-radius:28px}
+.btn{padding:12px 14px;font-size:.88rem;min-width:94px}
+.ph{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+<div class="sl" id="sl"></div>
+<div class="halo"></div>
+<div id="fl"></div>
+<div class="card" id="card">
+<h1><span>⚰️ 阴间点名仪式</span></h1>
+<div class="sub">命运由不得你 · 公平公正？不存在的</div>
+<div class="da">
+<div id="nm" class="ph">👁️ 深渊待命</div>
+<div id="cs"></div>
+</div>
+<div class="ab">
+<button class="btn prim" id="pick">🩸 开始献祭</button>
+<button class="btn" id="reset">⚰️ 全部复活</button>
+<button class="btn warn" id="clr">🕳️ 抹除罪证</button>
+</div>
+<div class="lh">
+<span>🪦 祭品名录 · <span id="cnt">0</span>人</span>
+<span class="badge" id="pool">未献祭</span>
+</div>
+<div class="lc">
+<div id="list" class="st"></div>
+</div>
+<div class="as">
+<input type="text" id="inp" placeholder="追加一名祭品..." maxlength="20" autocomplete="off" />
+<button class="btn" id="add" style="padding:13px 18px;">➕ 献上</button>
+</div>
+<div class="hb" id="hpanel">
+<span class="hl">📜 血债记录:</span>
+<span id="hl2">暂无亡魂</span>
+<button class="ch" id="clr2">抹除</button>
+</div>
+<div class="fn">
+⚠️ 单击标签可抹除 · 语音吟诵已开启 · 深渊正在注视你
+</div>
+</div>
+<script>
+(function(){
+"use strict";
+var DEF=["陈鹏宇","陆衍朝","汤智翔","刘嘉洋","王阁","刘浩宇","王智轩","邢宇鹏","路易","查文瀚","仇和","周权晟","沈玺豪","王泽天","范书昀","唐歆甜","廖陈湘","陈玉煬","吴张彤","严君兰","周敏","蒋沛楠","张雨婷","柳佳","彭雨","荀雅清","李熹玥","刘欣瑞","张宗诚","尹俪霖"];
+var CURSES=["你被选中了...","逃不掉的","深渊记住了这个名字","命运已刻入石壁","献祭完成 ✦","下一个，就是你","别回头","祂正在注视你","名字已被收割"];
+var students=DEF.slice();
+var hist=[];
+var speechOn=true;
+var rolling=false;
+var nm=document.getElementById('nm');
+var listEl=document.getElementById('list');
+var cntEl=document.getElementById('cnt');
+var poolEl=document.getElementById('pool');
+var hl2=document.getElementById('hl2');
+var pickBtn=document.getElementById('pick');
+var resetBtn=document.getElementById('reset');
+var clrBtn=document.getElementById('clr');
+var addBtn=document.getElementById('add');
+var inp=document.getElementById('inp');
+var clr2Btn=document.getElementById('clr2');
+var cs=document.getElementById('cs');
+var fl=document.getElementById('fl');
+var card=document.getElementById('card');
+(function(){
+var syms=['💀','👁️','🕯️','🩸','⚰️','🕸️','🦴','☠️'];
+var sl=document.getElementById('sl');
+for(var i=0;i<14;i++){
+var s=document.createElement('span');
+s.textContent=syms[Math.floor(Math.random()*syms.length)];
+s.style.left=(Math.random()*100)+'%';
+s.style.top=(Math.random()*100)+'%';
+s.style.fontSize=(1.3+Math.random()*2.1)+'rem';
+s.style.animationDuration=(14+Math.random()*18)+'s';
+s.style.animationDelay=(-Math.random()*20)+'s';
+sl.appendChild(s);
+}
+})();
+function renderTags(){
+if(students.length===0){
+listEl.innerHTML='<div style="padding:14px;color:#5e2a34;width:100%;text-align:center;letter-spacing:2px;">🕳️ 名录已空 · 深渊在等你</div>';
+cntEl.textContent='0';
+poolEl.textContent='名录已空';
+return;
+}
+var h='';
+for(var i=0;i<students.length;i++){
+h+='<div class="tag">'+students[i]+' <button class="rm" data-i="'+i+'" title="抹除">✕</button></div>';
+}
+listEl.innerHTML=h;
+cntEl.textContent=students.length;
+poolEl.textContent='待献祭 '+students.length+' 人';
+}
+function showName(name){
+nm.classList.remove('slam','rolling');
+if(name){
+nm.textContent=name;
+nm.classList.remove('ph');
+void nm.offsetWidth;
+nm.classList.add('slam');
+}else{
+nm.textContent='👁️ 深渊待命';
+nm.classList.add('ph');
+}
+}
+function updHist(){
+if(hist.length===0){hl2.textContent='暂无亡魂';return;}
+hl2.textContent=hist.slice(-6).join('  ·  ');
+}
+function speak(name){
+if(!speechOn||!window.speechSynthesis)return;
+try{
+window.speechSynthesis.cancel();
+var u=new SpeechSynthesisUtterance('献祭，'+name);
+u.lang='zh-CN';u.rate=0.72;u.pitch=0.45;u.volume=1;
+window.speechSynthesis.speak(u);
+}catch(e){}
+}
+function showCurse(){
+var p=CURSES[Math.floor(Math.random()*CURSES.length)];
+cs.textContent=p;
+cs.classList.add('show');
+setTimeout(function(){cs.classList.remove('show');},4200);
+}
+function shake(){
+card.classList.remove('ritual');
+void card.offsetWidth;
+card.classList.add('ritual');
+setTimeout(function(){card.classList.remove('ritual');},700);
+}
+function flash(){
+fl.classList.remove('on');
+void fl.offsetWidth;
+fl.classList.add('on');
+setTimeout(function(){fl.classList.remove('on');},600);
+}
+function refresh(keep){
+renderTags();
+updHist();
+if(!keep){
+if(students.length===0&&hist.length>0)showName('💀 全员已献');
+else if(students.length===0)showName('🕳️ 名录已空');
+else showName(null);
+}
+}
+function pick(){
+if(rolling)return;
+if(students.length===0){
+alert('名录已空，深渊拒绝执行仪式。\n请先点「⚰️ 全部复活」或追加祭品。');
+return;
+}
+var idx=Math.floor(Math.random()*students.length);
+var picked=students[idx];
+rolling=true;
+pickBtn.disabled=true;
+cs.classList.remove('show');
+nm.classList.remove('ph','slam');
+nm.classList.add('rolling');
+var elapsed=0,total=1500,iv=55;
+function step(){
+var pool=students.length>0?students:DEF;
+nm.textContent=pool[Math.floor(Math.random()*pool.length)];
+elapsed+=iv;
+if(elapsed<total*0.65)iv=55;
+else if(elapsed<total*0.85)iv=95;
+else iv=150;
+if(elapsed<total)setTimeout(step,iv);
+else done();
+}
+function done(){
+nm.classList.remove('rolling');
+var i2=students.indexOf(picked);
+if(i2>=0)students.splice(i2,1);
+hist.push(picked);
+showName(picked);
+flash();shake();showCurse();speak(picked);
+renderTags();updHist();
+rolling=false;
+pickBtn.disabled=false;
+}
+step();
+}
+function resetAll(){
+if(rolling)return;
+students=DEF.slice();
+hist=[];
+cs.classList.remove('show');
+showName(null);
+refresh();
+if(window.speechSynthesis)window.speechSynthesis.cancel();
+}
+function clrHist(){
+if(hist.length===0)return;
+hist=[];
+updHist();
+}
+function rmIdx(i){
+if(i>=0&&i<students.length){
+var r=students[i];
+students.splice(i,1);
+if(nm.textContent===r)showName(null);
+refresh(true);
+}
+}
+function addStu(v){
+var t=v.trim();
+if(t===''){alert('深渊不接受空白之名。');return false;}
+if(students.indexOf(t)>=0){alert('同名者不可重复献祭。');return false;}
+students.push(t);
+refresh(true);
+return true;
+}
+pickBtn.addEventListener('click',pick);
+resetBtn.addEventListener('click',resetAll);
+clrBtn.addEventListener('click',clrHist);
+clr2Btn.addEventListener('click',clrHist);
+addBtn.addEventListener('click',function(){
+var ok=addStu(inp.value);
+if(ok){inp.value='';inp.focus();}
+});
+inp.addEventListener('keypress',function(e){
+if(e.key==='Enter'){e.preventDefault();addBtn.click();}
+});
+listEl.addEventListener('click',function(e){
+var b=e.target.closest('.rm');
+if(!b)return;
+var i=b.getAttribute('data-i');
+var idx=parseInt(i,10); if(!isNaN(idx))rmIdx(idx);
+});
+renderTags();
+showName(null);
+updHist();
+})();
+</script>
+</body>
+</html>
